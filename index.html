@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kritika Documentation — Advocates & Legal Consultants</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1D3A;
+    --gold: #C9A84C;
+    --gold-light: #E8C87A;
+    --cream: #F7F3EC;
+    --white: #FFFFFF;
+    --blue-mid: #1A3A6B;
+    --blue-accent: #2563EB;
+    --text-dark: #0B1D3A;
+    --text-muted: #6B7280;
+    --border: rgba(201,168,76,0.25);
+    --shadow: 0 20px 60px rgba(11,29,58,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* SIDEBAR NAV */
+  .sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 260px;
+    background: var(--navy);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-right: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .sidebar-brand {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .sidebar-brand .logo-scales {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+
+  .sidebar-brand h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .sidebar-brand p {
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .nav-section {
+    padding: 16px 0 8px;
+  }
+
+  .nav-section-title {
+    padding: 0 24px 8px;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.6);
+    font-weight: 500;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    transition: all 0.2s;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-item:hover, .nav-item.active {
+    background: rgba(201,168,76,0.08);
+    color: var(--gold-light);
+    border-left-color: var(--gold);
+  }
+
+  .nav-item .icon { font-size: 15px; width: 20px; text-align: center; }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 20px 24px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .sidebar-footer p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.6;
+  }
+
+  /* MAIN CONTENT */
+  .main {
+    margin-left: 260px;
+    min-height: 100vh;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--white);
+    border-bottom: 1px solid rgba(11,29,58,0.08);
+    padding: 14px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .topbar-left span.page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .topbar-btn {
+    background: var(--navy);
+    color: var(--gold);
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+  }
+
+  .topbar-btn:hover { background: var(--blue-mid); }
+
+  .avatar {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    cursor: pointer;
+  }
+
+  /* SECTIONS */
+  .section {
+    display: none;
+    padding: 36px;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---- HERO / HOME ---- */
+  .hero-section {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 56px 52px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .hero-section::before {
+    content: '⚖';
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 180px;
+    opacity: 0.04;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+
+  .hero-section h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-section h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-section p {
+    color: rgba(255,255,255,0.65);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.4); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+
+  .stat-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 22px 24px;
+    border: 1px solid rgba(11,29,58,0.07);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  .stat-icon {
+    position: absolute;
+    top: 20px; right: 20px;
+    font-size: 22px;
+    opacity: 0.15;
+  }
+
+  /* MODULES GRID */
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+
+  .module-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid rgba(11,29,58,0.07);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .module-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--navy), var(--blue-mid));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .module-card:hover { transform: translateY(-3px); box-shadow: 0 24px 48px rgba(11,29,58,0.14); }
+  .module-card:hover::before { transform: scaleX(1); }
+
+  .module-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, rgba(11,29,58,0.08), rgba(11,29,58,0.04));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .module-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .module-card p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* GENERIC PAGE HEADERS */
+  .page-header {
+    margin-bottom: 28px;
+  }
+
+  .page-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .page-header p {
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid rgba(11,29,58,0.07);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .card-header {
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(11,29,58,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .card-body { padding: 24px; }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table th {
+    text-align: left;
+    padding: 10px 16px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: rgba(11,29,58,0.03);
+    border-bottom: 1px solid rgba(11,29,58,0.06);
+  }
+  .data-table td {
+    padding: 12px 16px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(11,29,58,0.04);
+    color: var(--text-dark);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: rgba(201,168,76,0.04); }
+
+  /* BADGES */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .badge-green { background: rgba(34,197,94,0.12); color: #16a34a; }
+  .badge-yellow { background: rgba(234,179,8,0.12); color: #b45309; }
+  .badge-blue { background: rgba(37,99,235,0.12); color: #1d4ed8; }
+  .badge-red { background: rgba(239,68,68,0.12); color: #dc2626; }
+  .badge-navy { background: rgba(11,29,58,0.1); color: var(--navy); }
+
+  /* FORMS */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 10px 14px;
+    border: 1.5px solid rgba(11,29,58,0.12);
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+  }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+
+  .btn-sm {
+    padding: 8px 18px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-navy { background: var(--navy); color: var(--gold-light); }
+  .btn-navy:hover { background: var(--blue-mid); }
+  .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); font-weight: 600; }
+  .btn-ghost { background: transparent; border: 1.5px solid rgba(11,29,58,0.15); color: var(--navy); }
+  .btn-ghost:hover { border-color: var(--gold); }
+  .btn-danger { background: rgba(239,68,68,0.1); color: #dc2626; border: none; }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+  /* TIMELINE */
+  .timeline { padding: 0; list-style: none; }
+  .timeline-item {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 22px;
+    position: relative;
+  }
+  .timeline-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 30px;
+    bottom: 0;
+    width: 1px;
+    background: rgba(11,29,58,0.1);
+  }
+  .timeline-dot {
+    width: 30px; height: 30px; min-width: 30px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .timeline-content h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .timeline-content p {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* UPLOAD AREA */
+  .upload-area {
+    border: 2px dashed rgba(201,168,76,0.4);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: rgba(201,168,76,0.02);
+  }
+  .upload-area:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+  .upload-area .icon { font-size: 36px; margin-bottom: 10px; }
+  .upload-area p { font-size: 13px; color: var(--text-muted); }
+  .upload-area strong { color: var(--navy); }
+
+  /* CHART PLACEHOLDER */
+  .chart-bar {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 120px;
+    padding: 10px 0;
+  }
+  .chart-bar .bar {
+    flex: 1;
+    background: linear-gradient(180deg, var(--gold), rgba(201,168,76,0.3));
+    border-radius: 4px 4px 0 0;
+    min-height: 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .chart-bar .bar:hover { filter: brightness(1.1); }
+
+  /* NOTIFICATION ITEM */
+  .notif-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(11,29,58,0.05);
+  }
+  .notif-item:last-child { border-bottom: none; }
+  .notif-dot {
+    width: 36px; height: 36px; min-width: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .notif-item h4 { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+  .notif-item p { font-size: 12px; color: var(--text-muted); }
+  .notif-item span.time { font-size: 11px; color: var(--text-muted); }
+
+  /* PAYMENT */
+  .payment-card {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 28px;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .payment-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    background: rgba(201,168,76,0.1);
+    border-radius: 50%;
+  }
+  .payment-card h3 { font-family: 'Playfair Display',serif; font-size: 20px; margin-bottom: 6px; color: var(--gold-light); }
+  .payment-card p { font-size: 12px; opacity: 0.6; }
+  .payment-card .amount { font-family: 'Playfair Display',serif; font-size: 36px; color: var(--white); margin: 14px 0 4px; }
+
+  /* AUTH */
+  .auth-wrapper {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+  }
+  .auth-box {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 48px;
+    width: 420px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+    text-align: center;
+  }
+  .auth-box .logo { font-size: 48px; margin-bottom: 8px; }
+  .auth-box h2 { font-family:'Playfair Display',serif; font-size: 26px; color: var(--navy); margin-bottom: 4px; }
+  .auth-box p { color: var(--text-muted); font-size: 13px; margin-bottom: 28px; }
+  .auth-form { text-align: left; }
+  .auth-form .form-group { margin-bottom: 16px; }
+  .auth-tabs { display: flex; margin-bottom: 24px; border-radius: 8px; overflow: hidden; border: 1.5px solid rgba(11,29,58,0.12); }
+  .auth-tab { flex: 1; padding: 10px; font-size: 13px; background: transparent; border: none; cursor: pointer; font-family:'DM Sans',sans-serif; color: var(--text-muted); transition: all 0.2s; }
+  .auth-tab.active { background: var(--navy); color: var(--gold-light); font-weight: 600; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .stats-row { grid-template-columns: repeat(2,1fr); }
+    .modules-grid { grid-template-columns: 1fr 1fr; }
+    .two-col, .three-col { grid-template-columns: 1fr; }
+    .form-grid, .form-grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* MISC */
+  .flex-between { display: flex; align-items: center; justify-content: space-between; }
+  .flex-gap { display: flex; align-items: center; gap: 10px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-24 { margin-top: 24px; }
+  .divider { height: 1px; background: rgba(11,29,58,0.06); margin: 20px 0; }
+
+  .tag {
+    display: inline-block;
+    background: rgba(11,29,58,0.06);
+    color: var(--navy);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin: 2px;
+  }
+
+  .progress-bar { height: 6px; background: rgba(11,29,58,0.08); border-radius: 3px; overflow: hidden; margin-top: 6px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 3px; }
+
+  .info-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(11,29,58,0.05); font-size: 13px; }
+  .info-row:last-child { border-bottom: none; }
+  .info-row .label { color: var(--text-muted); }
+  .info-row .value { font-weight: 500; color: var(--navy); }
+
+  /* TOGGLE */
+  .toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute; inset: 0;
+    background: rgba(11,29,58,0.15);
+    border-radius: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    left: 3px; bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+  .toggle input:checked + .toggle-slider { background: var(--gold); }
+  .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+  .security-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 0; border-bottom: 1px solid rgba(11,29,58,0.05);
+  }
+  .security-row:last-child { border-bottom: none; }
+  .security-row h4 { font-size: 13px; font-weight: 600; color: var(--navy); }
+  .security-row p { font-size: 12px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<!-- AUTH SCREEN -->
+<div class="auth-wrapper" id="authWrapper">
+  <div class="auth-box">
+    <div class="logo">⚖️</div>
+    <h2>Kritika Documentation</h2>
+    <p>Advocates & Legal Consultants · New Delhi</p>
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchAuthTab('login', this)">Login</button>
+      <button class="auth-tab" onclick="switchAuthTab('register', this)">Register</button>
+    </div>
+    <div class="auth-form" id="loginForm">
+      <div class="form-group">
+        <label>Email / Phone</label>
+        <input type="text" placeholder="surendersrivastava66@gmail.com" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" placeholder="••••••••" />
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:20px;">
+        <a href="#" style="font-size:12px;color:var(--gold);text-decoration:none;">Forgot password?</a>
+      </div>
+      <button class="btn-primary" style="width:100%;padding:13px;" onclick="login()">Sign In →</button>
+      <p style="text-align:center;margin-top:14px;font-size:12px;color:var(--text-muted);">Demo: click Sign In to enter the portal</p>
+    </div>
+    <div class="auth-form" id="registerForm" style="display:none;">
+      <div class="form-grid">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="Surender" /></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Srivastava" /></div>
+      </div>
+      <div class="form-group mt-16"><label>Email</label><input type="email" placeholder="you@example.com" /></div>
+      <div class="form-group mt-16"><label>Phone</label><input type="text" placeholder="+91 9811329580" /></div>
+      <div class="form-group mt-16"><label>Password</label><input type="password" placeholder="Create a password" /></div>
+      <button class="btn-primary" style="width:100%;padding:13px;margin-top:20px;" onclick="login()">Create Account →</button>
+    </div>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo-scales">⚖️</div>
+    <h2>KRITIKA</h2>
+    <p>Documentation Portal</p>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Overview</div>
+    <a class="nav-item active" onclick="showSection('home', this)"><span class="icon">🏠</span> Dashboard</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Client Services</div>
+    <a class="nav-item" onclick="showSection('auth', this)"><span class="icon">🔐</span> User Management</a>
+    <a class="nav-item" onclick="showSection('intake', this)"><span class="icon">📋</span> Client Intake</a>
+    <a class="nav-item" onclick="showSection('appointments', this)"><span class="icon">📅</span> Appointments</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Legal Modules</div>
+    <a class="nav-item" onclick="showSection('cases', this)"><span class="icon">⚖️</span> Case Management</a>
+    <a class="nav-item" onclick="showSection('documents', this)"><span class="icon">📁</span> Documents (DMS)</a>
+    <a class="nav-item" onclick="showSection('trademark', this)"><span class="icon">™️</span> Trademark</a>
+    <a class="nav-item" onclick="showSection('property', this)"><span class="icon">🏠</span> Property</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Finance & Comms</div>
+    <a class="nav-item" onclick="showSection('billing', this)"><span class="icon">💳</span> Billing & Payments</a>
+    <a class="nav-item" onclick="showSection('notifications', this)"><span class="icon">🔔</span> Notifications</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">System</div>
+    <a class="nav-item" onclick="showSection('analytics', this)"><span class="icon">📊</span> Admin Analytics</a>
+    <a class="nav-item" onclick="showSection('security', this)"><span class="icon">🛡️</span> Security Settings</a>
+  </div>
+
+  <div class="sidebar-footer">
+    <p>Kritika Documentation<br>Shop No. 4, Old S.D.M. Office<br>Nangloi, New Delhi-41</p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <span>⚖️</span>
+      <span>›</span>
+      <span class="page-title" id="pageTitle">Dashboard</span>
+    </div>
+    <div class="topbar-right">
+      <button class="topbar-btn" onclick="showSection('intake', document.querySelector('.nav-item:nth-child(2))'))">+ New Client</button>
+      <div class="avatar" title="Surender Srivastava">SS</div>
+    </div>
+  </div>
+
+  <!-- HOME / DASHBOARD -->
+  <div class="section active" id="section-home">
+    <div class="hero-section">
+      <div class="hero-badge">⚖ KRITIKA DOCUMENTATION</div>
+      <h1>Advocates &amp; <em>Legal</em><br>Consultants Portal</h1>
+      <p>Complete legal management for property documents, trademark registration, lease mutations, liaison work, and more. Serving clients across New Delhi since inception.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showSection('intake', null)">New Client Intake</button>
+        <button class="btn-outline" onclick="showSection('cases', null)">View All Cases</button>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">248</div>
+        <div class="stat-label">Active Cases</div>
+        <div class="stat-icon">⚖️</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">61</div>
+        <div class="stat-label">Pending Appointments</div>
+        <div class="stat-icon">📅</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">₹4.2L</div>
+        <div class="stat-label">Revenue This Month</div>
+        <div class="stat-icon">💰</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">34</div>
+        <div class="stat-label">Trademark Applications</div>
+        <div class="stat-icon">™️</div>
+      </div>
+    </div>
+
+    <div class="modules-grid">
+      <div class="module-card" onclick="showSection('intake', null)">
+        <div class="module-icon">📋</div>
+        <h3>Client Intake</h3>
+        <p>Onboard new clients, collect KYC documents, and schedule initial consultations efficiently.</p>
+      </div>
+      <div class="module-card" onclick="showSection('cases', null)">
+        <div class="module-icon">⚖️</div>
+        <h3>Case Management</h3>
+        <p>Track case progress, assign advocates, manage hearings, and log case activities.</p>
+      </div>
+      <div class="module-card" onclick="showSection('documents', null)">
+        <div class="module-icon">📁</div>
+        <h3>Document Management</h3>
+        <p>Secure storage, versioning, and retrieval of all legal documents and property papers.</p>
+      </div>
+      <div class="module-card" onclick="showSection('trademark', null)">
+        <div class="module-icon">™️</div>
+        <h3>Trademark Module</h3>
+        <p>File TM applications, track registration status, and manage renewals and oppositions.</p>
+      </div>
+      <div class="module-card" onclick="showSection('property', null)">
+        <div class="module-icon">🏢</div>
+        <h3>Property Management</h3>
+        <p>Handle DDA/L&DO lease conversions, mutations, sale deeds, and registry work.</p>
+      </div>
+      <div class="module-card" onclick="showSection('billing', null)">
+        <div class="module-icon">💳</div>
+        <h3>Billing & Payments</h3>
+        <p>Generate invoices, track fee collection, and manage payment schedules for clients.</p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header">
+          <h3>Recent Activities</h3>
+          <span class="badge badge-navy">Today</span>
+        </div>
+        <div class="card-body" style="padding:16px 24px;">
+          <ul class="timeline">
+            <li class="timeline-item">
+              <div class="timeline-dot">1</div>
+              <div class="timeline-content">
+                <h4>Property Deed — Rajesh Kumar</h4>
+                <p>Sale deed prepared for Nangloi property · 10:30 AM</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-dot">2</div>
+              <div class="timeline-content">
+                <h4>TM Application Filed — Arora Textiles</h4>
+                <p>Class 25 trademark submitted to IP India · 11:15 AM</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-dot">3</div>
+              <div class="timeline-content">
+                <h4>Mutation Hearing — Singh Family</h4>
+                <p>Heard at SDM Office, Nangloi · 2:00 PM</p>
+              </div>
+            </li>
+            <li class="timeline-item" style="padding-bottom:0">
+              <div class="timeline-dot">4</div>
+              <div class="timeline-content">
+                <h4>Invoice Generated — Mehta & Sons</h4>
+                <p>₹15,000 for lease conversion · 3:45 PM</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Upcoming Appointments</h3>
+          <button class="btn-sm btn-navy" onclick="showSection('appointments', null)">View All</button>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <table class="data-table">
+            <thead><tr><th>Client</th><th>Time</th><th>Type</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Priya Sharma</td><td>9:00 AM</td><td>Property</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+              <tr><td>Vikash Gupta</td><td>10:30 AM</td><td>Trademark</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+              <tr><td>Sunita Devi</td><td>12:00 PM</td><td>Mutation</td><td><span class="badge badge-yellow">Pending</span></td></tr>
+              <tr><td>Arun Kapoor</td><td>3:00 PM</td><td>Lease Conv.</td><td><span class="badge badge-blue">Rescheduled</span></td></tr>
+              <tr><td>Mohan Lal</td><td>4:30 PM</td><td>Liaison</td><td><span class="badge badge-yellow">Pending</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USER MANAGEMENT -->
+  <div class="section" id="section-auth">
+    <div class="page-header">
+      <h2>User Management</h2>
+      <p>Manage advocates, staff, and client portal access</p>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="card">
+          <div class="card-header flex-between">
+            <h3>System Users</h3>
+            <button class="btn-sm btn-gold">+ Add User</button>
+          </div>
+          <div class="card-body" style="padding:0;">
+            <table class="data-table">
+              <thead><tr><th>Name</th><th>Role</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Surender Srivastava</strong></td><td>Senior Advocate</td><td><span class="badge badge-green">Active</span></td><td><button class="btn-sm btn-ghost">Edit</button></td></tr>
+                <tr><td><strong>Kartik Srivastava</strong></td><td>Advocate</td><td><span class="badge badge-green">Active</span></td><td><button class="btn-sm btn-ghost">Edit</button></td></tr>
+                <tr><td>Pooja Verma</td><td>Paralegal</td><td><span class="badge badge-green">Active</span></td><td><button class="btn-sm btn-ghost">Edit</button></td></tr>
+                <tr><td>Rahul Tiwari</td><td>Front Desk</td><td><span class="badge badge-yellow">Inactive</span></td><td><button class="btn-sm btn-ghost">Edit</button></td></tr>
+                <tr><td>Anita Sharma</td><td>Accounts</td><td><span class="badge badge-green">Active</span></td><td><button class="btn-sm btn-ghost">Edit</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card mt-24">
+          <div class="card-header"><h3>Role Permissions</h3></div>
+          <div class="card-body">
+            <div class="info-row"><span class="label">Senior Advocate</span><span class="value">Full Access</span></div>
+            <div class="info-row"><span class="label">Advocate</span><span class="value">Cases, Documents, Clients</span></div>
+            <div class="info-row"><span class="label">Paralegal</span><span class="value">Cases, Documents (Read)</span></div>
+            <div class="info-row"><span class="label">Front Desk</span><span class="value">Intake, Appointments</span></div>
+            <div class="info-row"><span class="label">Accounts</span><span class="value">Billing, Reports</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-header"><h3>Add New User</h3></div>
+          <div class="card-body">
+            <div class="form-group"><label>Full Name</label><input type="text" placeholder="e.g. Kartik Srivastava" /></div>
+            <div class="form-group mt-16"><label>Email</label><input type="email" placeholder="kartik@example.com" /></div>
+            <div class="form-group mt-16"><label>Phone</label><input type="text" placeholder="+91 9560560561" /></div>
+            <div class="form-group mt-16"><label>Role</label>
+              <select><option>Senior Advocate</option><option>Advocate</option><option>Paralegal</option><option>Front Desk</option><option>Accounts</option></select>
+            </div>
+            <div class="form-group mt-16"><label>Temporary Password</label><input type="password" placeholder="Set initial password" /></div>
+            <div class="mt-24 flex-gap">
+              <button class="btn-sm btn-gold" style="padding:10px 24px;">Create User</button>
+              <button class="btn-sm btn-ghost" style="padding:10px 20px;">Cancel</button>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-24">
+          <div class="card-header"><h3>Recent Login Activity</h3></div>
+          <div class="card-body" style="padding:0 24px;">
+            <div class="notif-item">
+              <div class="notif-dot" style="background:rgba(34,197,94,0.1);">✅</div>
+              <div><h4>Surender Srivastava</h4><p>Login from Chrome · Delhi, India</p><span class="time">Today, 9:02 AM</span></div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-dot" style="background:rgba(34,197,94,0.1);">✅</div>
+              <div><h4>Kartik Srivastava</h4><p>Login from Mobile App · Delhi, India</p><span class="time">Today, 9:45 AM</span></div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-dot" style="background:rgba(239,68,68,0.1);">❌</div>
+              <div><h4>Unknown</h4><p>Failed login attempt · IP: 103.21.x.x</p><span class="time">Yesterday, 11:30 PM</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT INTAKE -->
+  <div class="section" id="section-intake">
+    <div class="page-header">
+      <h2>Client Intake</h2>
+      <p>Register new clients and capture their legal requirements</p>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header"><h3>New Client Registration</h3></div>
+        <div class="card-body">
+          <div class="form-grid">
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="Rajesh" /></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Kumar" /></div>
+          </div>
+          <div class="form-grid mt-16">
+            <div class="form-group"><label>Phone</label><input type="text" placeholder="+91 98XXXXXXXX" /></div>
+            <div class="form-group"><label>Email</label><input type="email" placeholder="client@email.com" /></div>
+          </div>
+          <div class="form-group mt-16"><label>Address</label><textarea placeholder="Full residential address..."></textarea></div>
+          <div class="form-grid mt-16">
+            <div class="form-group"><label>ID Type</label>
+              <select><option>Aadhaar Card</option><option>PAN Card</option><option>Passport</option><option>Voter ID</option></select>
+            </div>
+            <div class="form-group"><label>ID Number</label><input type="text" placeholder="XXXX XXXX XXXX" /></div>
+          </div>
+          <div class="form-group mt-16"><label>Service Required</label>
+            <select>
+              <option>Property Document Preparation</option>
+              <option>Property Registration</option>
+              <option>Trademark Registration</option>
+              <option>DDA Lease to Freehold</option>
+              <option>L&DO Lease Conversion</option>
+              <option>Mutation Work</option>
+              <option>Liaison Work</option>
+              <option>Other Legal Services</option>
+            </select>
+          </div>
+          <div class="form-group mt-16"><label>Brief Description</label><textarea placeholder="Briefly describe the legal matter..."></textarea></div>
+          <div class="mt-24 flex-gap">
+            <button class="btn-sm btn-gold" style="padding:11px 28px;">Register Client</button>
+            <button class="btn-sm btn-ghost" style="padding:11px 22px;">Save Draft</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-header flex-between">
+            <h3>Recent Registrations</h3>
+            <span class="badge badge-navy">Last 7 days</span>
+          </div>
+          <div class="card-body" style="padding:0;">
+            <table class="data-table">
+              <thead><tr><th>Client</th><th>Service</th><th>Date</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Priya Sharma</td><td>Property Reg.</td><td>21 Apr</td><td><span class="badge badge-green">Active</span></td></tr>
+                <tr><td>Amit Verma</td><td>Trademark</td><td>20 Apr</td><td><span class="badge badge-blue">In Review</span></td></tr>
+                <tr><td>Sunita Devi</td><td>Mutation</td><td>19 Apr</td><td><span class="badge badge-yellow">Pending</span></td></tr>
+                <tr><td>Arun Kapoor</td><td>DDA Lease</td><td>18 Apr</td><td><span class="badge badge-green">Active</span></td></tr>
+                <tr><td>Mohan Lal</td><td>Liaison</td><td>17 Apr</td><td><span class="badge badge-green">Active</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card mt-24">
+          <div class="card-header"><h3>Upload KYC Documents</h3></div>
+          <div class="card-body">
+            <div class="upload-area">
+              <div class="icon">📎</div>
+              <p><strong>Drop documents here</strong> or click to browse</p>
+              <p>Aadhaar, PAN, Address Proof, Passport Photos</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPOINTMENTS -->
+  <div class="section" id="section-appointments">
+    <div class="page-header">
+      <h2>Appointment Scheduling</h2>
+      <p>Manage client meetings, hearings, and consultations</p>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header flex-between">
+          <h3>All Appointments</h3>
+          <div class="flex-gap">
+            <select style="padding:7px 12px;border:1.5px solid rgba(11,29,58,0.12);border-radius:7px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--navy);">
+              <option>All Types</option><option>Consultation</option><option>Hearing</option><option>Registry</option>
+            </select>
+            <button class="btn-sm btn-gold">+ Schedule</button>
+          </div>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <table class="data-table">
+            <thead><tr><th>Client</th><th>Advocate</th><th>Date & Time</th><th>Type</th><th>Status</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Priya Sharma</td><td>Kartik S.</td><td>Apr 21, 9:00 AM</td><td>Property</td><td><span class="badge badge-green">Confirmed</span></td><td><button class="btn-sm btn-ghost" style="padding:4px 10px;">✎</button></td></tr>
+              <tr><td>Vikash Gupta</td><td>Surender S.</td><td>Apr 21, 10:30 AM</td><td>Trademark</td><td><span class="badge badge-green">Confirmed</span></td><td><button class="btn-sm btn-ghost" style="padding:4px 10px;">✎</button></td></tr>
+              <tr><td>Sunita Devi</td><td>Kartik S.</td><td>Apr 21, 12:00 PM</td><td>Mutation</td><td><span class="badge badge-yellow">Pending</span></td><td><button class="btn-sm btn-ghost" style="padding:4px 10px;">✎</button></td></tr>
+              <tr><td>Arun Kapoor</td><td>Surender S.</td><td>Apr 22, 3:00 PM</td><td>Lease Conv.</td><td><span class="badge badge-blue">Rescheduled</span></td><td><button class="btn-sm btn-ghost" style="padding:4px 10px;">✎</button></td></tr>
+              <tr><td>Mohan Lal</td><td>Kartik S.</td><td>Apr 22, 4:30 PM</td><td>Liaison</td><td><span class="badge badge-yellow">Pending</span></td><td><button class="btn-sm btn-ghost" style="padding:4px 10px;">✎</button></td></tr>
+              <tr><td>Deepak Sharma</td><td>Surender S.</td><td>Apr 23, 10:00 AM</td><td>Sale Deed</td><td><span class="badge badge-green">Confirmed</span></td><td><button class="btn-sm btn-ghost" style="padding:4px 10px;">✎</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>New Appointment</h3></div>
+        <div class="card-body">
+          <div class="form-group"><label>Client Name</label><input type="text" placeholder="Search or enter name..." /></div>
+          <div class="form-group mt-16"><label>Advocate / Handler</label>
+            <select><option>Surender Srivastava</option><option>Kartik Srivastava</option></select>
+          </div>
+          <div class="form-grid mt-16">
+            <div class="form-group"><label>Date</label><input type="date" /></div>
+            <div class="form-group"><label>Time</label><input type="time" /></div>
+          </div>
+          <div class="form-group mt-16"><label>Appointment Type</label>
+            <select><option>Initial Consultation</option><option>Property Discussion</option><option>Trademark Filing</option><option>Hearing</option><option>Document Review</option><option>Registry Visit</option></select>
+          </div>
+          <div class="form-group mt-16"><label>Location</label>
+            <select><option>Nangloi Office</option><option>Kirti Nagar (Resi.)</option><option>SDM Court</option><option>Sub-Registrar Office</option><option>Online / Phone</option></select>
+          </div>
+          <div class="form-group mt-16"><label>Notes</label><textarea placeholder="Any special instructions..." style="min-height:70px;"></textarea></div>
+          <div class="mt-20 flex-gap">
+            <button class="btn-sm btn-gold" style="padding:10px 24px;">Book Appointment</button>
+            <button class="btn-sm btn-ghost" style="padding:10px 18px;">Send Reminder</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASES -->
+  <div class="section" id="section-cases">
+    <div class="page-header">
+      <h2>Case Management</h2>
+      <p>Track all ongoing and completed legal matters</p>
+    </div>
+    <div class="stats-row" style="grid-template-columns:repeat(4,1fr);">
+      <div class="stat-card"><div class="stat-num">248</div><div class="stat-label">Total Active</div></div>
+      <div class="stat-card"><div class="stat-num">92</div><div class="stat-label">Property Cases</div></div>
+      <div class="stat-card"><div class="stat-num">34</div><div class="stat-label">Trademark Cases</div></div>
+      <div class="stat-card"><div class="stat-num">122</div><div class="stat-label">Other Legal</div></div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header flex-between">
+          <h3>Active Cases</h3>
+          <div class="flex-gap">
+            <input type="text" placeholder="Search case..." style="padding:7px 12px;border:1.5px solid rgba(11,29,58,0.12);border-radius:7px;font-size:12px;font-family:'DM Sans',sans-serif;" />
+            <button class="btn-sm btn-gold">+ New Case</button>
+          </div>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <table class="data-table">
+            <thead><tr><th>Case ID</th><th>Client</th><th>Type</th><th>Advocate</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><strong>#KD-2024-001</strong></td><td>Rajesh Kumar</td><td>Sale Deed</td><td>Kartik S.</td><td><span class="badge badge-green">Active</span></td></tr>
+              <tr><td><strong>#KD-2024-002</strong></td><td>Arora Textiles</td><td>Trademark</td><td>Surender S.</td><td><span class="badge badge-blue">Filed</span></td></tr>
+              <tr><td><strong>#KD-2024-003</strong></td><td>Singh Family</td><td>Mutation</td><td>Kartik S.</td><td><span class="badge badge-yellow">Hearing</span></td></tr>
+              <tr><td><strong>#KD-2024-004</strong></td><td>Mehta & Sons</td><td>Lease Conv.</td><td>Surender S.</td><td><span class="badge badge-green">Active</span></td></tr>
+              <tr><td><strong>#KD-2024-005</strong></td><td>Deepak Sharma</td><td>Registry</td><td>Kartik S.</td><td><span class="badge badge-green">Active</span></td></tr>
+              <tr><td><strong>#KD-2024-006</strong></td><td>Patel Bros</td><td>Trademark</td><td>Surender S.</td><td><span class="badge badge-red">Objection</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-header"><h3>Case Detail — #KD-2024-001</h3></div>
+          <div class="card-body">
+            <div class="info-row"><span class="label">Client</span><span class="value">Rajesh Kumar</span></div>
+            <div class="info-row"><span class="label">Matter</span><span class="value">Sale Deed — Nangloi Property</span></div>
+            <div class="info-row"><span class="label">Assigned To</span><span class="value">Kartik Srivastava</span></div>
+            <div class="info-row"><span class="label">Filed On</span><span class="value">10 April 2024</span></div>
+            <div class="info-row"><span class="label">Next Hearing</span><span class="value">24 April 2024</span></div>
+            <div class="info-row"><span class="label">Priority</span><span class="value"><span class="badge badge-yellow">High</span></span></div>
+            <div class="divider"></div>
+            <label class="form-group" style="display:block;"><span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);">Progress</span>
+              <div class="progress-bar mt-16"><div class="progress-fill" style="width:65%;"></div></div>
+              <span style="font-size:11px;color:var(--text-muted);margin-top:4px;display:block;">65% complete — Document preparation stage</span>
+            </label>
+            <div class="divider"></div>
+            <div class="form-group"><label>Add Note / Update</label><textarea placeholder="Log case activity or update..."></textarea></div>
+            <button class="btn-sm btn-navy mt-16" style="padding:10px 20px;">Save Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOCUMENTS -->
+  <div class="section" id="section-documents">
+    <div class="page-header">
+      <h2>Document Management System</h2>
+      <p>Secure, organized storage for all legal documents</p>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="card">
+          <div class="card-header flex-between">
+            <h3>Document Library</h3>
+            <div class="flex-gap">
+              <select style="padding:7px 12px;border:1.5px solid rgba(11,29,58,0.12);border-radius:7px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--navy);">
+                <option>All Categories</option><option>Property</option><option>Trademark</option><option>Lease</option><option>KYC</option>
+              </select>
+            </div>
+          </div>
+          <div class="card-body" style="padding:0;">
+            <table class="data-table">
+              <thead><tr><th>Document</th><th>Client</th><th>Category</th><th>Date</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>📄 Sale_Deed_RK.pdf</td><td>Rajesh Kumar</td><td><span class="tag">Property</span></td><td>Apr 21</td><td><button class="btn-sm btn-ghost" style="padding:3px 10px;">⬇</button></td></tr>
+                <tr><td>📄 TM_App_Arora.pdf</td><td>Arora Textiles</td><td><span class="tag">Trademark</span></td><td>Apr 20</td><td><button class="btn-sm btn-ghost" style="padding:3px 10px;">⬇</button></td></tr>
+                <tr><td>📄 Mutation_Singh.pdf</td><td>Singh Family</td><td><span class="tag">Mutation</span></td><td>Apr 19</td><td><button class="btn-sm btn-ghost" style="padding:3px 10px;">⬇</button></td></tr>
+                <tr><td>📄 Lease_Mehta.pdf</td><td>Mehta & Sons</td><td><span class="tag">Lease</span></td><td>Apr 18</td><td><button class="btn-sm btn-ghost" style="padding:3px 10px;">⬇</button></td></tr>
+                <tr><td>📋 KYC_Deepak.zip</td><td>Deepak Sharma</td><td><span class="tag">KYC</span></td><td>Apr 17</td><td><button class="btn-sm btn-ghost" style="padding:3px 10px;">⬇</button></td></tr>
+                <tr><td>📄 TM_Opp_Patel.pdf</td><td>Patel Bros</td><td><span class="tag">Trademark</span></td><td>Apr 15</td><td><button class="btn-sm btn-ghost" style="padding:3px 10px;">⬇</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-header"><h3>Upload Documents</h3></div>
+          <div class="card-body">
+            <div class="upload-area">
+              <div class="icon">📁</div>
+              <p><strong>Drag & drop files here</strong></p>
+              <p>PDF, DOCX, JPG, PNG supported · Max 50MB</p>
+            </div>
+            <div class="form-group mt-16"><label>Link to Client</label><input type="text" placeholder="Search client name..." /></div>
+            <div class="form-group mt-16"><label>Document Category</label>
+              <select><option>Property Documents</option><option>Trademark</option><option>KYC / Identity</option><option>Court Orders</option><option>Lease Documents</option><option>Correspondence</option><option>Invoices</option></select>
+            </div>
+            <div class="form-group mt-16"><label>Description</label><input type="text" placeholder="Brief document description" /></div>
+            <button class="btn-sm btn-gold mt-16" style="padding:10px 24px;width:100%;">Upload Document</button>
+          </div>
+        </div>
+        <div class="card mt-24">
+          <div class="card-header"><h3>Storage Usage</h3></div>
+          <div class="card-body">
+            <div class="info-row"><span class="label">Total Documents</span><span class="value">1,284 files</span></div>
+            <div class="info-row"><span class="label">Storage Used</span><span class="value">8.3 GB / 50 GB</span></div>
+            <div class="progress-bar mt-16"><div class="progress-fill" style="width:17%;"></div></div>
+            <p style="font-size:11px;color:var(--text-muted);margin-top:6px;">17% used — 41.7 GB available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRADEMARK -->
+  <div class="section" id="section-trademark">
+    <div class="page-header">
+      <h2>Trademark Management</h2>
+      <p>Track filings, renewals, and trademark status with IP India</p>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num">34</div><div class="stat-label">Active Applications</div></div>
+      <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">Registered</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Under Objection</div></div>
+      <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Renewal Due</div></div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header flex-between">
+          <h3>Trademark Applications</h3>
+          <button class="btn-sm btn-gold">+ New Filing</button>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <table class="data-table">
+            <thead><tr><th>Applicant</th><th>Mark</th><th>Class</th><th>App No.</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Arora Textiles</td><td>ARORA™</td><td>25</td><td>6241890</td><td><span class="badge badge-blue">Formalities Check</span></td></tr>
+              <tr><td>Patel Bros</td><td>PATEL BROS™</td><td>30</td><td>6198765</td><td><span class="badge badge-red">Objection</span></td></tr>
+              <tr><td>Gupta Foods</td><td>SWADESH™</td><td>43</td><td>6102341</td><td><span class="badge badge-green">Registered</span></td></tr>
+              <tr><td>Singh Motors</td><td>SPEEDKING™</td><td>12</td><td>6089234</td><td><span class="badge badge-yellow">Advertised</span></td></tr>
+              <tr><td>Mehta Pharma</td><td>HEALMAX™</td><td>5</td><td>5994321</td><td><span class="badge badge-green">Registered</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-header"><h3>New Trademark Application</h3></div>
+          <div class="card-body">
+            <div class="form-group"><label>Applicant Name</label><input type="text" placeholder="Company or individual name" /></div>
+            <div class="form-group mt-16"><label>Trademark / Brand Name</label><input type="text" placeholder="BRAND NAME™" /></div>
+            <div class="form-grid mt-16">
+              <div class="form-group"><label>Nice Class</label>
+                <select><option>Class 1 — Chemicals</option><option>Class 5 — Pharmaceuticals</option><option>Class 12 — Vehicles</option><option>Class 25 — Clothing</option><option>Class 30 — Food</option><option>Class 35 — Advertising</option><option>Class 43 — Services</option></select>
+              </div>
+              <div class="form-group"><label>Application Type</label>
+                <select><option>Wordmark</option><option>Device Mark</option><option>Logo</option><option>Combined</option></select>
+              </div>
+            </div>
+            <div class="form-group mt-16"><label>Goods / Services Description</label><textarea placeholder="Describe goods or services covered..."></textarea></div>
+            <div class="upload-area mt-16" style="padding:20px;">
+              <p><strong>Upload Logo / Mark Image</strong> (JPG, PNG)</p>
+            </div>
+            <button class="btn-sm btn-gold mt-16" style="padding:10px 24px;width:100%;">Submit Application</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROPERTY -->
+  <div class="section" id="section-property">
+    <div class="page-header">
+      <h2>Property Management</h2>
+      <p>Manage property registrations, lease conversions, and mutation work</p>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header flex-between">
+          <h3>Property Matters</h3>
+          <button class="btn-sm btn-gold">+ New Matter</button>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <table class="data-table">
+            <thead><tr><th>Client</th><th>Property</th><th>Service</th><th>Stage</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Rajesh Kumar</td><td>Plot 45, Nangloi</td><td>Sale Deed</td><td>Document Prep</td><td><span class="badge badge-yellow">In Progress</span></td></tr>
+              <tr><td>Singh Family</td><td>House 12B, Janakpuri</td><td>Mutation</td><td>Hearing</td><td><span class="badge badge-blue">Hearing</span></td></tr>
+              <tr><td>Mehta & Sons</td><td>Shop 3, Kirti Nagar</td><td>Lease → Freehold</td><td>DDA Submission</td><td><span class="badge badge-yellow">Pending</span></td></tr>
+              <tr><td>Deepak Sharma</td><td>Flat 7C, Dwarka</td><td>Registry</td><td>Stamp Duty Paid</td><td><span class="badge badge-green">Ready</span></td></tr>
+              <tr><td>Arun Kapoor</td><td>L&DO Plot, Rohini</td><td>Leasehold Conv.</td><td>Application Filed</td><td><span class="badge badge-blue">Filed</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-header"><h3>New Property Matter</h3></div>
+          <div class="card-body">
+            <div class="form-group"><label>Client Name</label><input type="text" placeholder="Property owner's name" /></div>
+            <div class="form-group mt-16"><label>Property Address</label><textarea placeholder="Complete property address..." style="min-height:60px;"></textarea></div>
+            <div class="form-grid mt-16">
+              <div class="form-group"><label>Property Type</label>
+                <select><option>Residential Plot</option><option>House / Flat</option><option>Commercial Shop</option><option>Agricultural Land</option></select>
+              </div>
+              <div class="form-group"><label>Service Type</label>
+                <select><option>Sale Deed Prep.</option><option>Property Registration</option><option>DDA Lease Conversion</option><option>L&DO Conversion</option><option>Mutation</option><option>Liaison Work</option></select>
+              </div>
+            </div>
+            <div class="form-grid mt-16">
+              <div class="form-group"><label>Area (sq. yards)</label><input type="number" placeholder="e.g. 50" /></div>
+              <div class="form-group"><label>Circle Rate (₹)</label><input type="number" placeholder="e.g. 50000" /></div>
+            </div>
+            <div class="form-group mt-16"><label>Remarks</label><input type="text" placeholder="Additional details..." /></div>
+            <button class="btn-sm btn-gold mt-16" style="padding:10px 24px;width:100%;">Create Property Matter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BILLING -->
+  <div class="section" id="section-billing">
+    <div class="page-header">
+      <h2>Billing & Payments</h2>
+      <p>Manage invoices, fee collection, and payment tracking</p>
+    </div>
+    <div class="three-col" style="margin-bottom:24px;">
+      <div class="payment-card">
+        <h3>Monthly Revenue</h3>
+        <p>April 2026</p>
+        <div class="amount">₹4,21,500</div>
+        <div class="progress-bar" style="background:rgba(255,255,255,0.15);margin-top:10px;"><div class="progress-fill" style="width:72%;background:linear-gradient(90deg,var(--gold),var(--gold-light));"></div></div>
+        <p style="margin-top:6px;font-size:11px;">72% of monthly target</p>
+      </div>
+      <div class="card" style="margin-bottom:0;">
+        <div class="card-body">
+          <div class="stat-num" style="font-size:28px;color:var(--gold);">₹88,000</div>
+          <div class="stat-label">Outstanding Dues</div>
+          <div class="divider"></div>
+          <div class="info-row"><span class="label">Overdue (>30 days)</span><span class="value" style="color:#dc2626;">₹22,000</span></div>
+          <div class="info-row"><span class="label">Due this week</span><span class="value" style="color:#b45309;">₹31,000</span></div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:0;">
+        <div class="card-body">
+          <div class="stat-num" style="font-size:28px;color:#16a34a;">₹3,33,500</div>
+          <div class="stat-label">Collected This Month</div>
+          <div class="divider"></div>
+          <div class="info-row"><span class="label">Cash</span><span class="value">₹1,20,000</span></div>
+          <div class="info-row"><span class="label">UPI / Bank</span><span class="value">₹2,13,500</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header flex-between">
+          <h3>Recent Invoices</h3>
+          <button class="btn-sm btn-gold">+ New Invoice</button>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <table class="data-table">
+            <thead><tr><th>Invoice #</th><th>Client</th><th>Service</th><th>Amount</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>#INV-1042</td><td>Mehta & Sons</td><td>Lease Conversion</td><td>₹15,000</td><td><span class="badge badge-green">Paid</span></td></tr>
+              <tr><td>#INV-1041</td><td>Arora Textiles</td><td>Trademark Filing</td><td>₹8,500</td><td><span class="badge badge-green">Paid</span></td></tr>
+              <tr><td>#INV-1040</td><td>Singh Family</td><td>Mutation Work</td><td>₹12,000</td><td><span class="badge badge-yellow">Partial</span></td></tr>
+              <tr><td>#INV-1039</td><td>Deepak Sharma</td><td>Registry Work</td><td>₹18,000</td><td><span class="badge badge-red">Pending</span></td></tr>
+              <tr><td>#INV-1038</td><td>Patel Bros</td><td>TM Opposition</td><td>₹22,000</td><td><span class="badge badge-red">Overdue</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Generate Invoice</h3></div>
+        <div class="card-body">
+          <div class="form-group"><label>Client</label><input type="text" placeholder="Search client..." /></div>
+          <div class="form-group mt-16"><label>Service Description</label><input type="text" placeholder="e.g. Property Registration Work" /></div>
+          <div class="form-grid mt-16">
+            <div class="form-group"><label>Amount (₹)</label><input type="number" placeholder="15000" /></div>
+            <div class="form-group"><label>Due Date</label><input type="date" /></div>
+          </div>
+          <div class="form-group mt-16"><label>Payment Method</label>
+            <select><option>Cash</option><option>UPI (PhonePe/GPay)</option><option>Bank Transfer (NEFT/IMPS)</option><option>Cheque</option></select>
+          </div>
+          <div class="form-group mt-16"><label>Notes</label><input type="text" placeholder="Payment terms or notes..." /></div>
+          <div class="mt-20 flex-gap">
+            <button class="btn-sm btn-gold" style="padding:10px 24px;">Generate Invoice</button>
+            <button class="btn-sm btn-ghost" style="padding:10px 18px;">Preview PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTIFICATIONS -->
+  <div class="section" id="section-notifications">
+    <div class="page-header">
+      <h2>Notifications & Communications</h2>
+      <p>Stay updated on case activities, appointments, and client messages</p>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header flex-between">
+          <h3>Recent Notifications</h3>
+          <button class="btn-sm btn-ghost">Mark All Read</button>
+        </div>
+        <div class="card-body" style="padding:12px 24px;">
+          <div class="notif-item">
+            <div class="notif-dot" style="background:rgba(37,99,235,0.1);">📅</div>
+            <div><h4>Appointment Reminder</h4><p>Priya Sharma — 9:00 AM today at Nangloi Office</p><span class="time">10 mins ago</span></div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-dot" style="background:rgba(234,179,8,0.1);">⚖️</div>
+            <div><h4>Case Update — #KD-2024-003</h4><p>Singh Family mutation hearing rescheduled to Apr 28</p><span class="time">1 hour ago</span></div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-dot" style="background:rgba(239,68,68,0.1);">💳</div>
+            <div><h4>Payment Overdue</h4><p>Patel Bros — Invoice #INV-1038 overdue by 12 days</p><span class="time">3 hours ago</span></div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-dot" style="background:rgba(34,197,94,0.1);">✅</div>
+            <div><h4>Trademark Registered!</h4><p>Gupta Foods — SWADESH™ Class 43 registration confirmed</p><span class="time">Yesterday</span></div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-dot" style="background:rgba(201,168,76,0.15);">📄</div>
+            <div><h4>Document Uploaded</h4><p>Deepak Sharma uploaded KYC documents</p><span class="time">Yesterday</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-header"><h3>Send Notification</h3></div>
+          <div class="card-body">
+            <div class="form-group"><label>Recipient</label><input type="text" placeholder="Client name or 'All Clients'" /></div>
+            <div class="form-group mt-16"><label>Channel</label>
+              <select><option>SMS</option><option>WhatsApp</option><option>Email</option><option>All Channels</option></select>
+            </div>
+            <div class="form-group mt-16"><label>Message Template</label>
+              <select>
+                <option>Appointment Reminder</option>
+                <option>Hearing Date Notice</option>
+                <option>Payment Due Reminder</option>
+                <option>Document Ready for Pickup</option>
+                <option>Custom Message</option>
+              </select>
+            </div>
+            <div class="form-group mt-16"><label>Message</label><textarea placeholder="Type your message..."></textarea></div>
+            <button class="btn-sm btn-gold mt-16" style="padding:10px 24px;width:100%;">Send Notification</button>
+          </div>
+        </div>
+        <div class="card mt-24">
+          <div class="card-header"><h3>Contact Info</h3></div>
+          <div class="card-body">
+            <div class="info-row"><span class="label">Surender Srivastava</span><span class="value">9811329580 / 9871329580</span></div>
+            <div class="info-row"><span class="label">Kartik Srivastava</span><span class="value">9560560561 / 9650604148</span></div>
+            <div class="info-row"><span class="label">Email 1</span><span class="value" style="font-size:12px;">surendersrivastava66@gmail.com</span></div>
+            <div class="info-row"><span class="label">Email 2</span><span class="value" style="font-size:12px;">advkartiksrivastava97@gmail.com</span></div>
+            <div class="info-row"><span class="label">Office</span><span class="value" style="font-size:12px;">Shop No. 4, SDM Office, Nangloi</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANALYTICS -->
+  <div class="section" id="section-analytics">
+    <div class="page-header">
+      <h2>Admin Dashboard & Analytics</h2>
+      <p>Business intelligence and performance overview</p>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num">248</div><div class="stat-label">Active Cases</div><div class="stat-icon">⚖️</div></div>
+      <div class="stat-card"><div class="stat-num">₹4.2L</div><div class="stat-label">Monthly Revenue</div><div class="stat-icon">💰</div></div>
+      <div class="stat-card"><div class="stat-num">94%</div><div class="stat-label">Client Satisfaction</div><div class="stat-icon">⭐</div></div>
+      <div class="stat-card"><div class="stat-num">38</div><div class="stat-label">New Clients (Apr)</div><div class="stat-icon">👤</div></div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header"><h3>Monthly Revenue (2026)</h3></div>
+        <div class="card-body">
+          <div class="chart-bar">
+            <div class="bar" style="height:55%" title="Jan: ₹2.9L"></div>
+            <div class="bar" style="height:62%" title="Feb: ₹3.1L"></div>
+            <div class="bar" style="height:48%" title="Mar: ₹2.5L"></div>
+            <div class="bar" style="height:80%" title="Apr: ₹4.2L"></div>
+            <div class="bar" style="height:35%;background:rgba(201,168,76,0.2);" title="May: Projected"></div>
+            <div class="bar" style="height:35%;background:rgba(201,168,76,0.2);" title="Jun: Projected"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-top:6px;">
+            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Cases by Service Type</h3></div>
+        <div class="card-body">
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div>
+              <div class="flex-between" style="font-size:13px;margin-bottom:4px;"><span>Property Documents & Registry</span><span style="font-weight:600;color:var(--navy);">37%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:37%;"></div></div>
+            </div>
+            <div>
+              <div class="flex-between" style="font-size:13px;margin-bottom:4px;"><span>Trademark Registration</span><span style="font-weight:600;color:var(--navy);">22%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:22%;"></div></div>
+            </div>
+            <div>
+              <div class="flex-between" style="font-size:13px;margin-bottom:4px;"><span>DDA/L&DO Lease Conversions</span><span style="font-weight:600;color:var(--navy);">18%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:18%;"></div></div>
+            </div>
+            <div>
+              <div class="flex-between" style="font-size:13px;margin-bottom:4px;"><span>Mutation Work</span><span style="font-weight:600;color:var(--navy);">13%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:13%;"></div></div>
+            </div>
+            <div>
+              <div class="flex-between" style="font-size:13px;margin-bottom:4px;"><span>Liaison & Other Legal</span><span style="font-weight:600;color:var(--navy);">10%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:10%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Advocate Performance</h3></div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead><tr><th>Advocate</th><th>Active Cases</th><th>Closed This Month</th><th>Appointments</th><th>Revenue Generated</th><th>Rating</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Surender Srivastava</strong></td><td>142</td><td>18</td><td>32</td><td>₹2,41,000</td><td>⭐ 4.9</td></tr>
+            <tr><td><strong>Kartik Srivastava</strong></td><td>106</td><td>14</td><td>29</td><td>₹1,80,500</td><td>⭐ 4.8</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="section" id="section-security">
+    <div class="page-header">
+      <h2>Security Settings</h2>
+      <p>Manage access controls, two-factor authentication, and system security</p>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="card">
+          <div class="card-header"><h3>Authentication Settings</h3></div>
+          <div class="card-body">
+            <div class="security-row">
+              <div><h4>Two-Factor Authentication</h4><p>Require OTP for all admin logins</p></div>
+              <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="security-row">
+              <div><h4>Login Notifications</h4><p>Email alert on each new login</p></div>
+              <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="security-row">
+              <div><h4>Session Timeout</h4><p>Auto-logout after 30 min inactivity</p></div>
+              <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="security-row">
+              <div><h4>IP Restriction</h4><p>Allow login only from office IP</p></div>
+              <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-24">
+          <div class="card-header"><h3>Data Protection</h3></div>
+          <div class="card-body">
+            <div class="security-row">
+              <div><h4>Document Encryption</h4><p>All documents encrypted at rest (AES-256)</p></div>
+              <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="security-row">
+              <div><h4>Audit Logs</h4><p>Log all user actions for compliance</p></div>
+              <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="security-row">
+              <div><h4>Automatic Backup</h4><p>Daily cloud backup of all data</p></div>
+              <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-header"><h3>Change Password</h3></div>
+          <div class="card-body">
+            <div class="form-group"><label>Current Password</label><input type="password" placeholder="••••••••" /></div>
+            <div class="form-group mt-16"><label>New Password</label><input type="password" placeholder="Minimum 8 characters" /></div>
+            <div class="form-group mt-16"><label>Confirm New Password</label><input type="password" placeholder="Repeat new password" /></div>
+            <button class="btn-sm btn-navy mt-20" style="padding:10px 24px;width:100%;">Update Password</button>
+          </div>
+        </div>
+        <div class="card mt-24">
+          <div class="card-header"><h3>System Audit Log</h3></div>
+          <div class="card-body" style="padding:12px 24px;">
+            <div class="notif-item">
+              <div class="notif-dot" style="background:rgba(34,197,94,0.1);font-size:12px;">✅</div>
+              <div><h4>Admin login — Surender S.</h4><p>Successful · Chrome · Delhi</p><span class="time">Today 9:02 AM</span></div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-dot" style="background:rgba(37,99,235,0.1);font-size:12px;">📄</div>
+              <div><h4>Document uploaded</h4><p>Sale_Deed_RK.pdf added by Kartik S.</p><span class="time">Today 10:15 AM</span></div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-dot" style="background:rgba(201,168,76,0.15);font-size:12px;">✎</div>
+              <div><h4>Case updated — #KD-2024-003</h4><p>Status changed to Hearing by Surender S.</p><span class="time">Today 11:00 AM</span></div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-dot" style="background:rgba(239,68,68,0.1);font-size:12px;">🔒</div>
+              <div><h4>Failed login attempt</h4><p>Unknown IP: 103.21.88.x</p><span class="time">Yesterday 11:32 PM</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const sectionTitles = {
+    home: 'Dashboard',
+    auth: 'User Management',
+    intake: 'Client Intake',
+    appointments: 'Appointments',
+    cases: 'Case Management',
+    documents: 'Document Management',
+    trademark: 'Trademark Module',
+    property: 'Property Management',
+    billing: 'Billing & Payments',
+    notifications: 'Notifications',
+    analytics: 'Admin Analytics',
+    security: 'Security Settings'
+  };
+
+  function showSection(id, navEl) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const sec = document.getElementById('section-' + id);
+    if (sec) sec.classList.add('active');
+    if (navEl) navEl.classList.add('active');
+    document.getElementById('pageTitle').textContent = sectionTitles[id] || id;
+    window.scrollTo(0, 0);
+  }
+
+  function login() {
+    document.getElementById('authWrapper').style.display = 'none';
+  }
+
+  function switchAuthTab(tab, el) {
+    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
+    document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
+  }
+</script>
+</body>
+</html>
